@@ -46,7 +46,18 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 .timeline {
+  height: 280px;
+  position: relative;
   display: flex;
   flex-direction: row;
+  margin-left: 137px;
+  &::after {
+    background: #ff6b00;
+    content: '';
+    position: absolute;
+    top: calc(50% - 0.5px);
+    height: 1px;
+    width: 100%;
+  }
 }
 </style>

@@ -1,6 +1,8 @@
 <template>
   <div class="timeline">
-    <TimelineItem v-for="item in items" :key="item.message" :item="item" />
+    <div class="timeline__wrapper">
+      <TimelineItem v-for="item in items" :key="item.message" :item="item" />
+    </div>
   </div>
 </template>
 
@@ -46,18 +48,25 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 .timeline {
+  width: 100vw;
   height: 280px;
   position: relative;
-  display: flex;
-  flex-direction: row;
-  margin-left: 137px;
+  overflow: hidden;
+  &__wrapper {
+    /* transform: translateX(-1000px); */
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 137px;
+  }
   &::after {
     background: #ff6b00;
     content: '';
     position: absolute;
     top: calc(50% - 0.5px);
     height: 1px;
-    width: 100%;
+    width: 200vw;
   }
 }
 </style>

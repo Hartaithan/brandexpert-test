@@ -29,6 +29,7 @@ export default Vue.extend({
   display: flex;
   align-self: flex-end;
   height: 100px;
+  min-width: 360px;
   &:nth-child(odd) {
     align-self: flex-start;
     & > .timeline-item__point {

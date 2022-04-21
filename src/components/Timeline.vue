@@ -1,6 +1,9 @@
 <template>
   <div class="timeline">
-    <div class="timeline__wrapper">
+    <div
+      class="timeline__wrapper"
+      :style="'transform: translateX(' + translate + 'px)'"
+    >
       <TimelineItem v-for="item in items" :key="item.message" :item="item" />
     </div>
     <div class="timeline__arrows">
@@ -11,6 +14,7 @@
         viewBox="0 0 48 48"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        v-on:click="left"
       >
         <circle cx="24" cy="24" r="23.5" stroke="white" />
         <g clip-path="url(#clip0_228_135)">
@@ -38,6 +42,7 @@
         viewBox="0 0 48 48"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        v-on:click="right"
       >
         <circle cx="24" cy="24" r="23.5" stroke="white" />
         <g clip-path="url(#clip0_228_135)">
@@ -72,6 +77,7 @@ export default Vue.extend({
   name: 'Timeline',
   data (): {
     items: ITimelineItem[];
+    translate: number;
     } {
     return {
       items: [
@@ -96,7 +102,20 @@ export default Vue.extend({
           title:
             'Открытие собственного завода по обработке металлов и производству металлоконструкций'
         }
-      ]
+      ],
+      translate: 0
+    }
+  },
+  methods: {
+    left: function () {
+      if (this.translate < 0) {
+        this.translate = this.translate + 360
+      }
+    },
+    right: function () {
+      if (this.translate > -((this.items.length - 2) * 360)) {
+        this.translate = this.translate - 360
+      }
     }
   }
 })
@@ -109,7 +128,8 @@ export default Vue.extend({
   position: relative;
   overflow: hidden;
   &__wrapper {
-    /* transform: translateX(-1000px); */
+    transform: translateX(0px);
+    transition: 0.5s transform ease-in-out;
     width: fit-content;
     height: 100%;
     display: flex;
@@ -124,6 +144,10 @@ export default Vue.extend({
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    &__left,
+    &__right {
+      cursor: pointer;
+    }
     &__left {
       transform: rotate(180deg);
     }

@@ -3,6 +3,62 @@
     <div class="timeline__wrapper">
       <TimelineItem v-for="item in items" :key="item.message" :item="item" />
     </div>
+    <div class="timeline__arrows">
+      <svg
+        class="timeline__arrows__left"
+        width="48"
+        height="48"
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="24" cy="24" r="23.5" stroke="white" />
+        <g clip-path="url(#clip0_228_135)">
+          <path
+            d="M21.707 29.8821L27.795 23.7941L21.707 17.7071"
+            stroke="white"
+            stroke-width="2"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_228_135">
+            <rect
+              width="8.209"
+              height="13.589"
+              fill="white"
+              transform="translate(21 17)"
+            />
+          </clipPath>
+        </defs>
+      </svg>
+      <svg
+        class="timeline__arrows__right"
+        width="48"
+        height="48"
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="24" cy="24" r="23.5" stroke="white" />
+        <g clip-path="url(#clip0_228_135)">
+          <path
+            d="M21.707 29.8821L27.795 23.7941L21.707 17.7071"
+            stroke="white"
+            stroke-width="2"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_228_135">
+            <rect
+              width="8.209"
+              height="13.589"
+              fill="white"
+              transform="translate(21 17)"
+            />
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
   </div>
 </template>
 
@@ -59,6 +115,18 @@ export default Vue.extend({
     display: flex;
     flex-direction: row;
     margin-left: 137px;
+  }
+  &__arrows {
+    width: 100%;
+    position: fixed;
+    bottom: 88px;
+    padding: 0 137px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &__left {
+      transform: rotate(180deg);
+    }
   }
   &::after {
     background: #ff6b00;

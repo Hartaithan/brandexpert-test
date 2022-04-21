@@ -20,7 +20,7 @@ export default Vue.extend({
 <style scoped lang="scss">
 .history {
   flex-grow: 1;
-  margin: 392px 377px 89px 137px;
+  margin: 292px 377px 89px 137px;
 }
 h1,
 p {

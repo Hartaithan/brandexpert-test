@@ -36,4 +36,20 @@ p {
   font-size: 16px;
   line-height: 24px;
 }
+@media (max-width: 768px) {
+  .history {
+    margin: 202px 77px 83px 78px;
+  }
+  p {
+    width: 613px;
+  }
+}
+@media (max-width: 375px) {
+  .history {
+    margin: 183px 18px 43px 16px;
+  }
+  p {
+    width: 341px;
+  }
+}
 </style>

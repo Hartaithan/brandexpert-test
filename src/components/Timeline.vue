@@ -78,6 +78,7 @@ export default Vue.extend({
   data (): {
     items: ITimelineItem[];
     translate: number;
+    step: number;
     } {
     return {
       items: [
@@ -103,19 +104,36 @@ export default Vue.extend({
             'Открытие собственного завода по обработке металлов и производству металлоконструкций'
         }
       ],
-      translate: 0
+      translate: 0,
+      step: 360
     }
   },
   methods: {
     left: function () {
       if (this.translate < 0) {
-        this.translate = this.translate + 360
+        this.translate = this.translate + this.step
       }
     },
     right: function () {
-      if (this.translate > -((this.items.length - 2) * 360)) {
-        this.translate = this.translate - 360
+      if (this.translate > -((this.items.length - 3) * this.step)) {
+        this.translate = this.translate - this.step
       }
+    }
+  },
+  mounted () {
+    const width = window.innerWidth
+    switch (true) {
+      case width < 376:
+        this.step = 344
+        break
+      case width < 769:
+        this.step = 183
+        break
+      case width > 768:
+        this.step = 360
+        break
+      default:
+        break
     }
   }
 })
@@ -126,7 +144,6 @@ export default Vue.extend({
   width: 100vw;
   height: 280px;
   position: relative;
-  overflow: hidden;
   &__wrapper {
     transform: translateX(0px);
     transition: 0.5s transform ease-in-out;
@@ -138,8 +155,8 @@ export default Vue.extend({
   }
   &__arrows {
     width: 100%;
-    position: fixed;
-    bottom: 88px;
+    position: absolute;
+    bottom: -88px;
     padding: 0 137px;
     display: flex;
     flex-direction: row;
@@ -159,6 +176,28 @@ export default Vue.extend({
     top: calc(50% - 0.5px);
     height: 1px;
     width: 200vw;
+  }
+}
+@media (max-width: 768px) {
+  .timeline {
+    height: 420px;
+    &__wrapper {
+      margin-left: 78px;
+    }
+    &__arrows {
+      padding: 0 78px;
+    }
+  }
+}
+@media (max-width: 375px) {
+  .timeline {
+    height: 300px;
+    &__wrapper {
+      margin-left: 16px;
+    }
+    &__arrows {
+      padding: 0 16px;
+    }
   }
 }
 </style>

@@ -59,4 +59,16 @@ export default Vue.extend({
     bottom: unset;
   }
 }
+@media (max-width: 768px) {
+  .timeline-item {
+    height: 170px;
+    width: 183px;
+  }
+}
+@media (max-width: 375px) {
+  .timeline-item {
+    height: 110px;
+    width: 344px;
+  }
+}
 </style>

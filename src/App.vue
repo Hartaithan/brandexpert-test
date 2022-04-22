@@ -37,5 +37,9 @@ body,
 #app {
   height: 100%;
   width: 100%;
+  overflow: hidden;
+}
+::-webkit-scrollbar {
+  display: none;
 }
 </style>

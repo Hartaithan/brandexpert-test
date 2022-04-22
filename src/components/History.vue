@@ -44,7 +44,7 @@ p {
     width: 613px;
   }
 }
-@media (max-width: 375px) {
+@media (max-width: 576px) {
   .history {
     margin: 183px 18px 43px 16px;
   }

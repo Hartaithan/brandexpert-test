@@ -65,7 +65,7 @@ export default Vue.extend({
     width: 183px;
   }
 }
-@media (max-width: 375px) {
+@media (max-width: 576px) {
   .timeline-item {
     height: 110px;
     width: 344px;

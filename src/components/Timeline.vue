@@ -189,7 +189,7 @@ export default Vue.extend({
     }
   }
 }
-@media (max-width: 375px) {
+@media (max-width: 576px) {
   .timeline {
     height: 300px;
     &__wrapper {

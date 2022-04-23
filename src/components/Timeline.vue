@@ -1,5 +1,11 @@
 <template>
-  <div class="timeline">
+  <div
+    class="timeline"
+    v-on:touchstart="handleSwipeStart"
+    v-on:touchend="handleSwipeEnd"
+    v-on:mousedown="handleSwipeStart"
+    v-on:mouseup="handleSwipeEnd"
+  >
     <div
       class="timeline__wrapper"
       :style="'transform: translateX(' + translate + 'px)'"
@@ -118,6 +124,48 @@ export default Vue.extend({
       if (this.translate > -((this.items.length - 3) * this.step)) {
         this.translate = this.translate - this.step
       }
+    },
+    handleSwipeStart: function (event: TouchEvent | MouseEvent) {
+      let posXStart = 0
+      let eventType = ''
+      if (event instanceof TouchEvent) {
+        eventType = 'touchend'
+        if (event.changedTouches.length !== 1) {
+          return
+        }
+        posXStart = event.changedTouches[0].clientX
+      }
+      if (event instanceof MouseEvent) {
+        eventType = 'mouseup'
+        posXStart = event.pageX
+      }
+      addEventListener(
+        eventType,
+        (event) => this.handleSwipeEnd(event, posXStart),
+        {
+          once: true
+        }
+      )
+    },
+    handleSwipeEnd: function (
+      event: TouchEvent | MouseEvent | Event,
+      posXStart: number
+    ) {
+      let posXEnd = 0
+      if (event instanceof TouchEvent) {
+        if (event.changedTouches.length !== 1) {
+          return
+        }
+        posXEnd = event.changedTouches[0].clientX
+      }
+      if (event instanceof MouseEvent) {
+        posXEnd = event.pageX
+      }
+      if (posXStart < posXEnd) {
+        this.left()
+      } else if (posXStart > posXEnd) {
+        this.right()
+      }
     }
   },
   mounted () {
@@ -144,6 +192,9 @@ export default Vue.extend({
   width: 100vw;
   height: 280px;
   position: relative;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
   &__wrapper {
     transform: translateX(0px);
     transition: 0.5s transform ease-in-out;
